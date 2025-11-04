@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.ptit_study.theo_doi_chi_tieu_backend.Entity.*;
 import com.ptit_study.theo_doi_chi_tieu_backend.repository.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -116,6 +117,18 @@ public class NguoiDungService {
 
         return nguoiDungRepo.save(exitsting);
     }
+
+    // xoa chi tieu theo ID
+    @Transactional
+    public void deleteChiTieu(Integer chiTieuId) {
+        ChiTieu chiTieu = chiTieuRepo.findById(chiTieuId)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy chi tiêu"));
+
+        NguoiDung user = chiTieu.getNguoiDung();
+        user.getChiTieus().remove(chiTieu); // bỏ khỏi danh sách trước
+        nguoiDungRepo.save(user);           // Hibernate sẽ tự xóa bản ghi khỏi DB
+    }
+
 
 }
 

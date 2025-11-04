@@ -7,6 +7,7 @@ import com.ptit_study.theo_doi_chi_tieu_backend.Entity.DinhMucChiTieu;
 import com.ptit_study.theo_doi_chi_tieu_backend.Entity.NguoiDung;
 import com.ptit_study.theo_doi_chi_tieu_backend.service.NguoiDungService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,6 +67,15 @@ public class NguoiDungController {
         NguoiDung updated = nguoiDungService.updateNguoiDung(id, nguoiDungMoi);
         return ResponseEntity.ok(updated);
     }
+
+    // DELETE xóa chi tiêu bằng ID
+
+    @DeleteMapping("/chi-tieu/{id}")
+    public ResponseEntity<String> deleteChiTieu(@PathVariable Integer id) {
+        nguoiDungService.deleteChiTieu(id);
+        return ResponseEntity.ok("Đã xóa chi tiêu có ID: " + id);
+    }
+
 }
 
 
