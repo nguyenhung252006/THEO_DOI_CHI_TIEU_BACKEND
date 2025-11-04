@@ -2,12 +2,12 @@ package com.ptit_study.theo_doi_chi_tieu_backend.controller;
 
 import com.ptit_study.theo_doi_chi_tieu_backend.Entity.ChiTieu;
 import com.ptit_study.theo_doi_chi_tieu_backend.Entity.ChiTieuKhac;
+import com.ptit_study.theo_doi_chi_tieu_backend.Entity.NguoiDung;
 
 import com.ptit_study.theo_doi_chi_tieu_backend.Entity.DinhMucChiTieu;
-import com.ptit_study.theo_doi_chi_tieu_backend.Entity.NguoiDung;
 import com.ptit_study.theo_doi_chi_tieu_backend.service.NguoiDungService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +19,12 @@ public class NguoiDungController {
 
     @Autowired
     private NguoiDungService nguoiDungService;
+
+    //tạo người dùng
+    @PostMapping("/")
+    public NguoiDung addNguoiDung(@RequestBody  NguoiDung nguoiDungMoi) {
+        return  nguoiDungService.createNguoiDung(nguoiDungMoi);
+    }
 
     //lấy thông tin bằng id người dùng
     @GetMapping("/{id}")
@@ -76,6 +82,19 @@ public class NguoiDungController {
         return ResponseEntity.ok("Đã xóa chi tiêu có ID: " + id);
     }
 
+    // DELETE xóa chi tiêu khác bằng ID
+    @DeleteMapping("/chi-tieu-khac/{id}")
+    public ResponseEntity<String> deleteChiTieuKhac(@PathVariable Integer id) {
+        nguoiDungService.deleteChiTieuKhac(id);
+        return ResponseEntity.ok("Đã xóa chi tiêu khác có ID " + id);
+    }
+
+    //DELETE xóa định múc chi tiêu theo ID
+    @DeleteMapping("/dinh-muc/{id}")
+    public ResponseEntity<String> deleteDinhMucChiTieu(@PathVariable Integer id) {
+        nguoiDungService.deleteDinhMucChiTieu(id);
+        return ResponseEntity.ok("Đã xóa mục chi tiêu có ID" + id);
+    }
 }
 
 

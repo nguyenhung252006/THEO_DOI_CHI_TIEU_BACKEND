@@ -27,6 +27,20 @@ public class NguoiDungService {
         this.dinhMucRepo = dinhMucRepo;
     }
 
+    // thêm người dùng
+    public NguoiDung createNguoiDung (NguoiDung nguoiDungMoi) {
+        NguoiDung nguoiDung = new NguoiDung();
+        nguoiDung.setTaiKhoan(nguoiDungMoi.getTaiKhoan());
+        nguoiDung.setMatKhau(nguoiDungMoi.getMatKhau());
+        nguoiDung.setEmail(nguoiDungMoi.getEmail());
+        nguoiDung.setHoTen(nguoiDungMoi.getHoTen());
+        nguoiDung.setSoDienThoai(nguoiDungMoi.getSoDienThoai());
+        nguoiDung.setNgaySinh(nguoiDungMoi.getNgaySinh());
+        nguoiDungRepo.save(nguoiDung);
+        return nguoiDung;
+    }
+
+    // lấy dữ liệu người dùng bằng id
     public Map<String, Object> getNguoiDungByID(Integer id) {
         NguoiDung user = nguoiDungRepo.findById(id).orElse(null);
         if (user == null) return Map.of("error", "Không tìm thấy người dùng");
@@ -129,7 +143,26 @@ public class NguoiDungService {
         nguoiDungRepo.save(user);           // Hibernate sẽ tự xóa bản ghi khỏi DB
     }
 
+    // xoa chi tieu khac theo ID
+    @Transactional
+    public void deleteChiTieuKhac(Integer id) {
+        ChiTieuKhac chiTieuKhac = chiTieuKhacRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy mục chi tiêu khác"));
 
+        NguoiDung user = chiTieuKhac.getNguoiDung();
+        user.getChiTieuKhacs().remove(chiTieuKhac);
+        nguoiDungRepo.save(user);
+    }
+
+    // xoa dinh muc chi tieu theo id
+    @Transactional
+    public void deleteDinhMucChiTieu(Integer id) {
+        DinhMucChiTieu dinhMucChiTieu = dinhMucRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thất mục chi tiêu này"));
+        NguoiDung user = dinhMucChiTieu.getNguoiDung();
+        user.getDinhMucChiTieus().remove(dinhMucChiTieu);
+        nguoiDungRepo.save(user);
+    }
 }
 
 
