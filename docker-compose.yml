@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    container_name: theo_doi_chi_tieu_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://theo_doi_chi_tieu:3306/theo_doi_chi_tieu?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh
+      SPRING_DATASOURCE_USERNAME: theo_doi_chi_tieu
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    external: true
+    name: theo_doi_chi_tieu_backend_backend-network
