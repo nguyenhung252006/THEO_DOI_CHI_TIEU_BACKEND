@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.List;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -20,6 +22,12 @@ public class NguoiDungController {
 
     @Autowired
     private NguoiDungService nguoiDungService;
+
+    //Lay tat ca nguoi dung
+    @GetMapping("/")
+    public List<NguoiDung> getAllNguoiDung() {
+        return nguoiDungService.getNguoiDung();
+    }
 
     //tạo người dùng
     @PostMapping("/")

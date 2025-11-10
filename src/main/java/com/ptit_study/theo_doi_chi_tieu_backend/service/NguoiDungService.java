@@ -27,6 +27,12 @@ public class NguoiDungService {
         this.dinhMucRepo = dinhMucRepo;
     }
 
+    // lay tat ca nguoi dung
+    public List<NguoiDung> getNguoiDung() {
+        return nguoiDungRepo.findAll();
+    }
+
+
     // thêm người dùng
     public NguoiDung createNguoiDung (NguoiDung nguoiDungMoi) {
         NguoiDung nguoiDung = new NguoiDung();
