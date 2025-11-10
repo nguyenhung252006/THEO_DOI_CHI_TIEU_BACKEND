@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/nguoi-dung")
 public class NguoiDungController {
@@ -74,8 +75,16 @@ public class NguoiDungController {
         return ResponseEntity.ok(updated);
     }
 
-    // DELETE xóa chi tiêu bằng ID
+    //PUT chỉnh sửa chi tiêu khác
+    @PutMapping("/chi-tieu-khac/{id}")
+    public ResponseEntity<ChiTieuKhac> updateChiTieuKhac (@PathVariable Integer id, @RequestBody ChiTieuKhac chiTieuKhacMoi) {
+        ChiTieuKhac updated = nguoiDungService.updateChiTieuKhac(id, chiTieuKhacMoi);
+        return ResponseEntity.ok(updated);
+    }
 
+
+
+    // DELETE xóa chi tiêu bằng ID
     @DeleteMapping("/chi-tieu/{id}")
     public ResponseEntity<String> deleteChiTieu(@PathVariable Integer id) {
         nguoiDungService.deleteChiTieu(id);

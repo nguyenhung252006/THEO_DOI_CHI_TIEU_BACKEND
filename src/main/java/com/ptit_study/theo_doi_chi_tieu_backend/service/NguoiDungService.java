@@ -119,6 +119,18 @@ public class NguoiDungService {
         return chiTieuRepo.save(exitsting);
     }
 
+    // chỉnh sửa chi tiêu khác
+    public ChiTieuKhac updateChiTieuKhac (Integer chiTieuKhacId, ChiTieuKhac chiTieuKhacMoi) {
+        ChiTieuKhac existing = chiTieuKhacRepo.findById(chiTieuKhacId)
+                .orElseThrow(() -> new RuntimeException("không tìm thấy chi tiêu khác với id" + chiTieuKhacId));
+
+        existing.setSoTien(chiTieuKhacMoi.getSoTien());
+        existing.setThoiGianNhap(chiTieuKhacMoi.getThoiGianNhap());
+        existing.setTenKhoan(chiTieuKhacMoi.getTenKhoan());
+
+        return chiTieuKhacRepo.save(existing);
+    }
+
     // chỉnh sửa người dùng theo id
     public NguoiDung updateNguoiDung (Integer id, NguoiDung nguoiDungCapNhat) {
         NguoiDung exitsting = nguoiDungRepo.findById(id)
