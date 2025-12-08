@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "dinh_muc_chi_tieu")
@@ -28,6 +29,9 @@ public class DinhMucChiTieu {
 
     @Column(name = "ngay_luu", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime ngayLuu;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTao;
 
     public DinhMucChiTieu() {
         this.ngayLuu = LocalDateTime.now();
@@ -72,5 +76,13 @@ public class DinhMucChiTieu {
     public void setNgayLuu(LocalDateTime ngayLuu) {
         this.ngayLuu = ngayLuu;
     }
-// getters và setters
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
 }

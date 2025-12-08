@@ -1,10 +1,14 @@
 package com.ptit_study.theo_doi_chi_tieu_backend.Entity;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "chi_tieu_khac")
@@ -28,6 +32,9 @@ public class ChiTieuKhac {
 
     @Column(name = "so_tien", nullable = false)
     private BigDecimal soTien;
+
+    @Column(name = "ngay_tao")
+    private Date ngayTao;
 
     @Column(name = "thoi_gian_nhap", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime thoiGianNhap;
@@ -70,6 +77,14 @@ public class ChiTieuKhac {
 
     public void setThoiGianNhap(LocalDateTime thoiGianNhap) {
         this.thoiGianNhap = thoiGianNhap;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
 }

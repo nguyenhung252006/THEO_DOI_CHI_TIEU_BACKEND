@@ -2,8 +2,10 @@ package com.ptit_study.theo_doi_chi_tieu_backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "chi_tieu")
@@ -26,6 +28,9 @@ public class ChiTieu {
     @Column(name = "so_tien", nullable = false)
     private BigDecimal soTien;
 
+    @Column(name = "ngay_tao")
+    private Date ngayTao;
+
     @Column(name = "ghi_chu")
     private String ghiChu;
 
@@ -38,23 +43,61 @@ public class ChiTieu {
 
 
     // ===== Getters và Setters =====
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public NguoiDung getNguoiDung() { return nguoiDung; }
-    public void setNguoiDung(NguoiDung nguoiDung) { this.nguoiDung = nguoiDung; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public LoaiChiTieu getLoaiChiTieu() { return loaiChiTieu; }
-    public void setLoaiChiTieu(LoaiChiTieu loaiChiTieu) { this.loaiChiTieu = loaiChiTieu; }
+    public NguoiDung getNguoiDung() {
+        return nguoiDung;
+    }
 
-    public BigDecimal getSoTien() { return soTien; }
-    public void setSoTien(BigDecimal soTien) { this.soTien = soTien; }
+    public void setNguoiDung(NguoiDung nguoiDung) {
+        this.nguoiDung = nguoiDung;
+    }
 
-    public String getGhiChu() { return ghiChu; }
-    public void setGhiChu(String ghiChu) { this.ghiChu = ghiChu; }
+    public LoaiChiTieu getLoaiChiTieu() {
+        return loaiChiTieu;
+    }
 
-    public LocalDateTime getThoiGianNhap() { return thoiGianNhap; }
-    public void setThoiGianNhap(LocalDateTime thoiGianNhap) { this.thoiGianNhap = thoiGianNhap; }
+    public void setLoaiChiTieu(LoaiChiTieu loaiChiTieu) {
+        this.loaiChiTieu = loaiChiTieu;
+    }
+
+    public BigDecimal getSoTien() {
+        return soTien;
+    }
+
+    public void setSoTien(BigDecimal soTien) {
+        this.soTien = soTien;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+    public LocalDateTime getThoiGianNhap() {
+        return thoiGianNhap;
+    }
+
+    public void setThoiGianNhap(LocalDateTime thoiGianNhap) {
+        this.thoiGianNhap = thoiGianNhap;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
 }
 
 // Enum LoaiChiTieu

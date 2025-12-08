@@ -119,6 +119,7 @@ public class NguoiDungService {
 
         exitsting.setSoTien(chiTieuCapNhat.getSoTien());
         exitsting.setLoaiChiTieu(chiTieuCapNhat.getLoaiChiTieu());
+        exitsting.setNgayTao(chiTieuCapNhat.getNgayTao());
         exitsting.setGhiChu(chiTieuCapNhat.getGhiChu());
         exitsting.setThoiGianNhap(chiTieuCapNhat.getThoiGianNhap());
 
@@ -131,6 +132,7 @@ public class NguoiDungService {
                 .orElseThrow(() -> new RuntimeException("không tìm thấy chi tiêu khác với id" + chiTieuKhacId));
 
         existing.setSoTien(chiTieuKhacMoi.getSoTien());
+        existing.setNgayTao(chiTieuKhacMoi.getNgayTao());
         existing.setThoiGianNhap(chiTieuKhacMoi.getThoiGianNhap());
         existing.setTenKhoan(chiTieuKhacMoi.getTenKhoan());
 
